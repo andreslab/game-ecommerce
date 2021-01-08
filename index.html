@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./lib_threejs/three.js"></script>
+    <script>
+        var scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x2a3b4c);
+        var camera_orthographic = new THREE.OrthographicCamera(5,-5,5,-5,3,10);
+
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth,window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        var material = new THREE.MeshBasicMaterial({color:0x00ff00, wireframe:true});
+        var plane = new THREE.Mesh(new THREE.PlaneGeometry(2,2,3,5), material);
+        plane.position.y = 0;
+        scene.add(plane);
+
+        camera_orthographic.position.z = 5;
+
+        var animate = function(){
+            renderer.render(scene, camera_orthographic);
+        }
+        animate();
+    </script>
+</body>
+</html>
